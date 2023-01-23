@@ -1,0 +1,78 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:1 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: BayeSpec Installation and Usage
+#+DATE: <2019-10-16 Wed>
+#+AUTHOR: Richard Longland
+#+EMAIL: longland@X1Carbon
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.0.5)
+
+* Installing prerequisites
+** Install r-stan
+   *You may not need this step*\\
+   The instructions below are copied from https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started 
+   + First make sure openssl is installed
+     #+BEGIN_SRC sh
+     sudo apt install libssl-dev libcurl4-openssl-dev
+     #+END_SRC
+   + Make sure lapack is installed
+     #+BEGIN_SRC sh
+     sudo apt install liblapack-dev
+     #+END_SRC
+   + Load R and do the following
+     #+BEGIN_SRC R
+     remove.packages("rstan")
+     if (file.exists(".RData")) file.remove(".RData")
+     #+END_SRC
+   + Restart R
+   + Run
+     #+BEGIN_SRC 
+     install.packages("rstan", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+     #+END_SRC
+** Rethinking package
+   + Found here:\\
+     https://github.com/rmcelreath/rethinking
+   + Install some R packages
+     #+BEGIN_SRC sh
+     sudo apt install r-cran-mvtnorm
+     #+END_SRC
+   + From R run:
+     #+BEGIN_SRC R
+     install.packages(c("coda","devtools","loo"))
+     library(devtools)
+     devtools::install_github("rmcelreath/rethinking")
+     #+END_SRC
+* BayeSpec
+** Installing BayeSpec
+   + Choose an appropriate location to put BayeSpec then run
+     #+BEGIN_SRC sh
+     git clone http://engesrv.physics.ncsu.edu/Enge/BayeSpec.git
+     cd BayeSpec
+     #+END_SRC
+** Running BayeSpec
+   + Run R
+     #+BEGIN_SRC R
+     source("Spec.R")
+     #+END_SRC
+   + Load a spectrum: "Open"
+   + Zoom into a region around the peaks you want to fit
+   + In the command prompt, type (for a doublet):
+     #+BEGIN_SRC R
+     MCMCGaus(npeaks=2)     
+     #+END_SRC
+   + Click the region around the peaks. Don't include other peaks in this region (or increase the npeaks parameter)
+   + Click on the maximum points of the peaks (this is for initial fit guesses)
+   + Wait
+   + If you do want to output the figure:
+     #+BEGIN_SRC R
+     outputpdf("FitTest.pdf",width=10,height=10)
+     #+END_SRC
+** Updating code from git
+   #+BEGIN_SRC sh
+   git pull
+   #+END_SRC
