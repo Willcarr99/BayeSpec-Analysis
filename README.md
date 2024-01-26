@@ -1,5 +1,5 @@
 # Bayesian Peak Fitting in R
-Using Bayesian statistics to fit overlapping peaks for spectroscopy analysis. Determines Gaussian and non-Gaussian fitting parameters with the [quap](https://www.rdocumentation.org/packages/rethinking/versions/2.13/topics/quap) (quadratic approximate posterior distribution) function, part of the [rethinking](https://github.com/rmcelreath/rethinking) package in R.
+Using Bayesian statistics to fit overlapping peaks for spectroscopy analysis with the BayeSpec GUI (private repository from the research team using the Enge Split-Pole Spectrograph at the Triangle Universities Nuclear Laboratory). Determines Gaussian and non-Gaussian fitting parameters with the [quap](https://www.rdocumentation.org/packages/rethinking/versions/2.13/topics/quap) (quadratic approximate posterior distribution) function, part of the [rethinking](https://github.com/rmcelreath/rethinking) package in R.
 
 Peaks from different reactions are represented by different colors (code supports up to 3 different reactions currently). Peaks from the same reaction share the same width parameters, constraining them in otherwise unresolvable fitting scenarios.
 
